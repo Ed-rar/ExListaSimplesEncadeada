@@ -7,6 +7,7 @@ public class Metodos {
   private static Elemento inicio = null,atual,aux;
   
   static int identificador = 0;
+  
   public static void inserir(Produto objeto){
       identificador++;
       objeto.setId(identificador);
@@ -21,7 +22,7 @@ public class Metodos {
     
   }
   
-  public static void exibir(){
+public static void exibir(){
     Elemento e=inicio;
     while(e!=null){
         System.out.println(e.getObjeto());
@@ -29,7 +30,7 @@ public class Metodos {
     }
   }
   
-    public static int contarItem(){
+public static Integer contarItem(){
     int contador=0;
         Elemento e=inicio;
     while(e!=null){
@@ -39,7 +40,7 @@ public class Metodos {
     return contador;
   }
     
-public static double contarPrecoTotal(){
+public static Double contarPrecoTotal(){
     double contador=0;
         Elemento e=inicio;
     while(e!=null){
@@ -62,6 +63,21 @@ public static double contarPrecoTotal(){
       }
       return null;
   }
+  
+    public static Integer pesquisarPorIdPosicao(Integer id){
+    int contador=0;
+    Elemento e=inicio;
+    Produto produto;
+    while(e!=null){
+        produto = e.getObjeto();
+        if(produto.getId().equals(id)){
+            return contador;
+        }
+        contador++;
+        e=e.getProx();
+    }
+    return null;
+    }
  
 public static Produto atualizarPrecoPorId(Integer id, Double precoNovo){
       Elemento e = inicio;
@@ -77,14 +93,14 @@ public static Produto atualizarPrecoPorId(Integer id, Double precoNovo){
       return null;
   }
 
-public static Produto descontoPorCateg(Integer id, Double precoNovo){
+public static Double descontoPorCateg(String categoria, Double desconto){
       Elemento e = inicio;
       Produto produto;
       while(e != null){
           produto = e.getObjeto();
-          if(produto.getId().equals(id)){
-              produto.setPreco(precoNovo);
-              return produto;
+          if(produto.getCategoria().equals(categoria)){
+              produto.setPreco((produto.getPreco()-desconto));
+              return produto.getPreco();
           }
           e=e.getProx();
       }
@@ -112,9 +128,7 @@ public static Produto descontoPorCateg(Integer id, Double precoNovo){
   
   public static boolean remover(Integer id){
       Produto produto = pesquisarPorId(id);
-//      if(produto == null){
-//          return false;
-//      }
+
       Object[] v = pesquisarParaRemover(produto);
       if(v != null){
           Elemento r = (Elemento)v[0];

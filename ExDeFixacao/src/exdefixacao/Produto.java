@@ -27,10 +27,6 @@ public class Produto {
         return nome;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -45,6 +41,10 @@ public class Produto {
 
     public Integer getId() {
         return id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCategoria() {

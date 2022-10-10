@@ -93,6 +93,45 @@ public static Produto atualizarPrecoPorId(Integer id, Double precoNovo){
       return null;
   }
 
+    private static Elemento[] pesquisarRemove(int id) {
+        Elemento x = inicio, auxRem = null;
+        Elemento[] v = {x, auxRem};
+        Produto prod;
+        while (x != null) {
+            prod = (Produto) x.getObjeto();
+            if (id == prod.getId()) {
+                v[0]=x;
+                v[1]=auxRem;
+                return v;
+            }
+            auxRem = x;
+            x = x.getProx();
+        }
+        return null;
+    }
+
+    public static boolean remover(int id) {
+        Elemento[] v = pesquisarRemove(id);
+        if (v != null) {//Verifica se achou!
+            Elemento x = v[0];
+            Elemento auxRem = v[1];
+            if (x == inicio) {//Verifica se é o primeiro elemento
+              inicio=x.getProx();
+              x.setProx(null);
+            } else if (x == atual) {//Verifica se é o último
+               atual=auxRem;
+               aux=auxRem;
+               auxRem.setProx(null);
+            } else {//Verifica se um elemento qualquer
+                auxRem.setProx(x.getProx());
+                x.setProx(null);
+            }
+           return true;
+        }
+        return false;//Informa que não removeu
+    }
+
+
 public static Double descontoPorCateg(String categoria, Double desconto){
       Elemento e = inicio;
       Produto produto;

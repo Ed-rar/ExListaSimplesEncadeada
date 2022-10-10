@@ -30,7 +30,7 @@ public class Aplicacao {
         System.out.println(Metodos.pesquisarPorIdPosicao(3));
         
         System.out.println("\n============Remover por id (no exemplo id=3)=============");
-        System.out.println(Metodos.pesquisarPorId(3));
+        System.out.println(Metodos.remover(3));
 
         System.out.println("\n==========Atualizar preço por id (29.9 para 35.5)======================");
         System.out.println(Metodos.atualizarPrecoPorId(1, 35.5d));
